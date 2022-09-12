@@ -1,0 +1,6 @@
+<header>
+    <b><h2>УРЛС</h2></b>
+    {% if user.is_authenticated %}
+    <b>Добрый день, {{ user.get_short_name }}!</b>
+    {% endif %}
+</header>

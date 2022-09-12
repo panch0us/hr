@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}">
+    <meta charset="UTF-8">
+    <title> {% block title %} {% endblock title %}</title>
+</head>
+<body>
+{% include 'include/header.html' %}
+<div id="main">
+    {% include 'include/nav.html' %}
+    <article>
+        {% block content %}
+        
+        {% endblock content %}
+    </article>
+    {% include 'include/aside.html' %}
+</div>
+{% include 'include/footer.html' %}
+</body>
+</html>

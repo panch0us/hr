@@ -1,0 +1,92 @@
+{% extends 'candidate/base.html' %}
+{% block title %} Аналитическая справка по ИЦ {% endblock title %}
+{% block content %}
+        <!-- Все -->
+        <center><h3>{{ candidates }}</h3></center>
+        <hr>
+        <table>
+            <tr>
+                <th colspan="3" align="center">Сведения о кандидите</th>
+            </tr>
+            <tr>
+                <td colspan="2">Дата рождения</td>
+                <td>{{ candidates.c_birthday|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Возрастная группа</td>
+                <td>{{ candidates.с_age_group|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Пол</td>
+                <td>{{ candidates.с_gender|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Образование</td>
+                <td>{{ candidates.c_education|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Предыдущее место работы</td>
+                <td>{{ candidates.fk_previous_place_work|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="center">Источник комплектования</th>
+            </tr>
+            <tr>
+                <td colspan="2">Источник приглашения на службу</td><td>{{ candidates.fk_source_offer|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2">если кандидат приглашен из ОВД:</td>
+                <td>ОВД, из которого приглашен кандидат</td>
+                <td> {{ candidates.fk_dep_reg_lvl|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td>Служба, из которой приглашен кандидат</td>
+                <td> {{ candidates.fk_services|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="center">Сведения о планируемой службе</th>
+            </tr>
+            <tr>
+                <td colspan="2">Дата заявления</td><td>{{ candidates.c_date_statement|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемый вид работы</td><td>{{ candidates.с_type_work|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемый вид спец. звания</td><td>{{ candidates.с_type_title|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемая категория спец. звания</td><td>{{ candidates.с_categories_title|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемая должность</td><td>{{ candidates.fk_position_planned|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемая служба</td><td>{{ candidates.fk_services_planed|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Планируемый ОВД</td><td>{{ candidates.fk_dep_reg_lvl_planed|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <th colspan="3" align="center">Стадия трудоустройства</th>
+            </tr>
+            <tr>
+                <td colspan="2">Дата назначения ВВК</td><td>{{ candidates.c_date_medical_examination|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Дата назначения ЦПД</td><td>{{ candidates.c_date_psychological_test|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Дата назначения ППО</td><td>{{ candidates.c_date_psychological_selection|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Дата назначения полиграфа</td><td>{{ candidates.c_date_polygraph|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Дата приема на службу</td><td>{{ candidates.c_date_hire|default_if_none:'' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Основание отказа</td><td>{{ candidates.fk_reason_refusal_hire|default_if_none:'' }}</td>
+            </tr>
+        </table>
+{% endblock content %}

@@ -1,0 +1,107 @@
+{% extends 'candidate/base.html' %}
+{% block title %} Аналитическая справка по ИЦ {% endblock title %}
+{% block content %}
+
+        <!-- Все -->
+        <center><h3>Анализ по {{ services }}</h3></center>
+        <hr>
+        <table>
+            {% if candidates|length > 0 %}
+            <tr>
+                <th colspan="10" align="center">Кандидаты</th>
+            </tr>
+            <tr>
+                <td>ФИО</td>
+                <td>ОВД</td>
+                <td>Ист. комп.</td>
+                <td>Дата. заявления</td>
+                <td>Мед. комиссия</td>
+                <td>ЦПД</td>
+                <td>ППО</td>
+                <td>Полиграф</td>
+                <td>Дата приема</td>
+                <td>Осн. отказа</td>
+            </tr>
+                {% for can in candidates %}
+            <tr>
+                <td><a href="/candidate/candidate/{{ can.c_url }}">{{ can }}</a></td> 
+                <td>{{ can.fk_dep_reg_lvl_planed|default_if_none:'' }}</td>
+                <td>{{ can.fk_source_offer|default_if_none:'' }}</td>
+                <td>{{ can.c_date_statement|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_medical_examination|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_test|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_selection|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_polygraph|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_hire|date:'SHORT_DATE_FORMAT' }}</td>
+                
+                <td>{{ can.fk_reason_refusal_hire|default_if_none:'' }}</td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            {% if can_in_ser_hire|length > 0 %}
+            <tr>
+                <th colspan="10" align="center">Приняты на службу</th>
+            </tr>
+            <tr>
+                <td>ФИО</td>
+                <td>ОВД</td>
+                <td>Ист. комп.</td>
+                <td>Дата. заявления</td>
+                <td>Мед. комиссия</td>
+                <td>ЦПД</td>
+                <td>ППО</td>
+                <td>Полиграф</td>
+                <td>Дата приема</td>
+                <td>Осн. отказа</td>
+            </tr>
+                {% for can in can_in_ser_hire %}
+            <tr>
+                <td><a href="/candidate/candidate/{{ can.c_url }}">{{ can }}</td> 
+                <td>{{ can.fk_dep_reg_lvl_planed|default_if_none:'' }}</td>
+                <td>{{ can.fk_source_offer|default_if_none:'' }}</td>
+                <td>{{ can.c_date_statement|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_medical_examination|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_test|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_selection|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_polygraph|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_hire|date:'SHORT_DATE_FORMAT' }}</td>
+                
+                <td>{{ can.fk_reason_refusal_hire|default_if_none:'' }}</td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            {% if can_in_ser_refusal|length > 0 %}
+            <tr>
+                <th colspan="10" align="center">Отказано в приеме на службу</th>
+            </tr>
+            <tr>
+                <td>ФИО</td>
+                <td>ОВД</td>
+                <td>Ист. комп.</td>
+                <td>Дата. заявления</td>
+                <td>Мед. комиссия</td>
+                <td>ЦПД</td>
+                <td>ППО</td>
+                <td>Полиграф</td>
+                <td>Дата приема</td>
+                <td>Осн. отказа</td>
+            </tr>
+                {% for can in can_in_ser_refusal %}
+            <tr>
+                <td><a href="/candidate/candidate/{{ can.c_url }}">{{ can }}</td> 
+                <td>{{ can.fk_dep_reg_lvl_planed|default_if_none:'' }}</td>
+                <td>{{ can.fk_source_offer|default_if_none:'' }}</td>
+                <td>{{ can.c_date_statement|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_medical_examination|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_test|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_psychological_selection|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_polygraph|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.c_date_hire|date:'SHORT_DATE_FORMAT' }}</td>
+                <td>{{ can.fk_reason_refusal_hire|default_if_none:'' }}</td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+        </table>
+
+
+{% endblock content %}

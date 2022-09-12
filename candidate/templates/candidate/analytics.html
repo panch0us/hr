@@ -1,0 +1,153 @@
+{% extends 'candidate/base.html' %}
+{% block title %} Аналитическая справка{% endblock title %}
+{% block content %}
+
+        <!-- Все -->
+        <div class="filter">
+        <form class="filter_analitics_form" action="/candidate/filter_analitics/" method="get">
+            <fieldset>
+                <legend align="center">Анализ количества кандидатов за выбранный период</legend>
+                <label>Начало:</label>
+                    <input type="date" name="begin" required>
+                <label>Конец:</label>
+                    <input type="date" name="end" required>
+                <input type="submit" value="Выбрать">
+            </fieldset>
+        </form>
+        </div>
+
+<br><hr><br>
+
+<table>
+            <tr>
+                <td colspan="4" align="center">Анализ по подразделениям с отдельными кадрами</td>
+            </tr>
+            <tr>
+                <th colspan=1 align="center">Название</th><th>Кандидаты</th><th>Принятые</th><th>Непринятые</th>
+            </tr>
+        {% for can in can_group_div_kadri %}
+            <tr>
+                <td>
+                    <a href='/candidate/division_personnel/{{ can.fk_divisions_personnel__dp_url }}'>{{ can.fk_divisions_personnel__dp_title }}</a>
+                </td> 
+                <td>
+                        {{ can.can }}
+                </td>
+                <td>
+                        {{ can.can_hire }}
+                </td>
+                <td>
+                        {{ can.can_refusal }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td><b>ВСЕГО</b></td>
+                <td><b>{{ can_all|length }}</b></td>
+                <td><b>{{ can_hire_all|length }}</b></td>
+                <td><b>{{ can_refusal_all|length }}</b></td>
+            </tr>
+        </table>
+
+<br><hr><br>
+
+        <table>
+            <tr>
+                <td colspan="4" align="center">Анализ ОВД</td>
+            </tr>
+            <tr>
+                <th colspan=1 align="center">Название ОВД</th><th>Кандидаты</th><th>Принятые</th><th>Непринятые</th>
+            </tr>
+        {% for can in can_group_ovd %}
+            <tr>
+                <td>
+                    <a href='/candidate/department/{{ can.fk_dep_reg_lvl_planed__drl_url }}'>{{ can.fk_dep_reg_lvl_planed__drl_title }}</a>
+                </td> 
+                <td>
+                        {{ can.can }}
+                </td>
+                <td>
+                        {{ can.can_hire }}
+                </td>
+                <td>
+                        {{ can.can_refusal }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td><b>ВСЕГО</b></td>
+                <td><b>{{ can_all|length }}</b></td>
+                <td><b>{{ can_hire_all|length }}</b></td>
+                <td><b>{{ can_refusal_all|length }}</b></td>
+            </tr>
+        </table>
+
+        <br><hr><br>
+
+        <table>
+            <tr>
+                <td colspan="4" align="center">Анализ СЛУЖБ</td>
+            </tr>
+            <tr>
+                <th colspan=1 align="center">Название службы</th><th>Кандидаты</th><th>Принятые</th><th>Непринятые</th>
+            </tr>
+        {% for can in can_group_ser %}
+            <tr>
+                <td>
+                    <a href='/candidate/service/{{ can.fk_services_planed__s_url }}'>{{ can.fk_services_planed__s_title }}</a>
+                </td> 
+                <td>
+                        {{ can.can }}
+                </td>
+                <td>
+                        {{ can.can_hire }}
+                </td>
+                <td>
+                        {{ can.can_refusal }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td><b>ВСЕГО</b></td>
+                <td><b>{{ can_all|length }}</b></td>
+                <td><b>{{ can_hire_all|length }}</b></td>
+                <td><b>{{ can_refusal_all|length }}</b></td>
+            </tr>
+        </table>
+<br>
+<!--
+<table>
+            <tr>
+                <td colspan="4" align="center">Анализ по подразделениям</td>
+            </tr>
+            <tr>
+                <th colspan=1 align="center">Название</th><th>Кандидаты</th><th>Принятые</th><th>Непринятые</th>
+            </tr>
+        {% for can in can_group_div %}
+            <tr>
+                <td>
+                    <a href='/candidate/division/{{ can.fk_divisions_planed__d_url }}'>{{ can.fk_divisions_planed__d_title }}</a>
+                </td> 
+                <td>
+                        {{ can.can }}
+                </td>
+                <td>
+                        {{ can.can_hire }}
+                </td>
+                <td>
+                        {{ can.can_refusal }}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td><b>ВСЕГО</b></td>
+                <td><b>{{ can_all|length }}</b></td>
+                <td><b>{{ can_hire_all|length }}</b></td>
+                <td><b>{{ can_refusal_all|length }}</b></td>
+            </tr>
+        </table>
+<br>
+-->
+
+
+{% endblock content %}
